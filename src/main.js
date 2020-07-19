@@ -27,13 +27,18 @@ function addItem (event) {
         newPriority = document.createElement('span'),
         newTime = document.createElement('span'),
         newText = document.createElement('span'),
-        newButton = document.createElement('button');
+        newButton = document.createElement('button'),
+        newCheck = document.createElement('input');
+    newCheck.setAttribute('type', 'checkbox');
+    newCheck.setAttribute('name', 'toDoItems');
+    newCheck.setAttribute('value', newInput);
     input.value = '';
     newItem.className = 'todoContainer',
     newPriority.className = 'todoPriority',
     newTime.className = 'todoCreatedAt',
     newText.className = 'todoText',
     newButton.className = 'todoDelete';
+    newItem.appendChild(newCheck),
     newItem.appendChild(newPriority),
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
@@ -41,14 +46,18 @@ function addItem (event) {
     newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
     newButton.onclick = () => {
         newItem.remove();
-        updateCount();
+        updateCounter();
+        updateChecker();
+    }
+    newCheck.onclick = () => {
+        updateChecker();
     }
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
     newButton.innerText = '[ X ]';
     section.appendChild(newItem);
-    updateCount();
+    updateCounter();
     input.focus();
 }
 
@@ -74,15 +83,26 @@ function displayDate() {
 }
 
 // counting ToDos
-function updateCount() {
-    document.querySelector('#actionSection span').innerText = section.childElementCount;
+function updateCounter() {
+    document.querySelector('#actionSection #counter').innerText = section.childElementCount;
+}
+
+// counting checked ToDos
+function updateChecker() {
+    let checker = 0;
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(box => {
+        if(box.checked) {
+            checker++;
+        }
+    });
+    document.querySelector('#actionSection #checker').innerText = checker;
 }
 
 // when clicking the sort by priority button
 function sortByPriority() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoPriority').innerText > b.querySelector('.todoPriority').innerText ? -1 : 1);
-    console.log(itemsArray);
     itemsArray.forEach(item=>section.appendChild(item));
 }
 
@@ -90,6 +110,5 @@ function sortByPriority() {
 function sortByDate() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoCreatedAt').getAttribute('compareDate') > b.querySelector('.todoCreatedAt').getAttribute('compareDate') ? 1 : -1);
-    console.log(itemsArray);
     itemsArray.forEach(item=>section.appendChild(item));
 }
