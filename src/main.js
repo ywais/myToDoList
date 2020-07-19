@@ -31,12 +31,14 @@ function addItem (event) {
     newItem.appendChild(newButton);
     newButton.onclick = () => {
         newItem.remove();
+        updateCount();
     }
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
     newButton.innerText = '[ X ]';
     section.appendChild(newItem);
+    updateCount();
     input.focus();
 }
 
@@ -58,4 +60,8 @@ function displayDate() {
     if(minutes < 10) { minutes = '0' + minutes; }
     if(seconds < 10) { seconds = '0' + seconds; }
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+function updateCount() {
+    document.querySelector('#actionSection span').innerText = section.childElementCount;
 }
