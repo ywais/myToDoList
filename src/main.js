@@ -7,7 +7,9 @@ addButton.addEventListener('click', addItem);
 input.addEventListener('keyup', enterItem);
 
 let sortButton = document.querySelector('#sortButton');
+let dateSortButton = document.querySelector('#dateSortButton');
 sortButton.addEventListener('click', sortByPriority);
+dateSortButton.addEventListener('click', sortByDate);
 
 function enterItem(event) {
     if(event.keyCode === 13) {
@@ -32,6 +34,7 @@ function addItem (event) {
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
     newItem.appendChild(newButton);
+    newTime.setAttribute('compareDate', (new Date()).getTime());
     newButton.onclick = () => {
         newItem.remove();
         updateCount();
@@ -72,6 +75,13 @@ function updateCount() {
 function sortByPriority() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoPriority').innerText > b.querySelector('.todoPriority').innerText ? -1 : 1);
+    console.log(itemsArray);
+    itemsArray.forEach(item=>section.appendChild(item));
+}
+
+function sortByDate() {
+    let itemsArray = [...section.children];
+    itemsArray.sort((a,b) => a.querySelector('.todoCreatedAt').getAttribute('compareDate') > b.querySelector('.todoCreatedAt').getAttribute('compareDate') ? 1 : -1);
     console.log(itemsArray);
     itemsArray.forEach(item=>section.appendChild(item));
 }
