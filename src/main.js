@@ -33,9 +33,29 @@ function addItem (event) {
         newItem.remove();
     }
     newPriority.innerText = options[priority.selectedIndex].value,
-    newTime.innerText = new Date(),
+    newTime.innerText = displayDate(),
     newText.innerText = newInput,
     newButton.innerText = '[ X ]';
     section.appendChild(newItem);
     input.focus();
+}
+
+function displayDate() {
+    let date = new Date(),
+        year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        hours = date.getHours(),
+        minutes = date.getMinutes(),
+        seconds = date.getSeconds();
+    if(month < 9) {
+        month = '0' + (month + 1);
+    } else {
+        if(month === 9) { month++ }
+    }
+    if(day < 10) { day = '0' + day; }
+    if(hours < 10) { hours = '0' + hours; }
+    if(minutes < 10) { minutes = '0' + minutes; }
+    if(seconds < 10) { seconds = '0' + seconds; }
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
