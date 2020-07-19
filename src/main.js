@@ -6,6 +6,9 @@ let section = document.querySelector('#viewSection'),
 addButton.addEventListener('click', addItem);
 input.addEventListener('keyup', enterItem);
 
+let sortButton = document.querySelector('#sortButton');
+sortButton.addEventListener('click', sortByPriority);
+
 function enterItem(event) {
     if(event.keyCode === 13) {
     addItem();
@@ -64,4 +67,11 @@ function displayDate() {
 
 function updateCount() {
     document.querySelector('#actionSection span').innerText = section.childElementCount;
+}
+
+function sortByPriority() {
+    let itemsArray = [...section.children];
+    itemsArray.sort((a,b) => a.querySelector('.todoPriority').innerText > b.querySelector('.todoPriority').innerText ? -1 : 1);
+    console.log(itemsArray);
+    itemsArray.forEach(item=>section.appendChild(item));
 }
