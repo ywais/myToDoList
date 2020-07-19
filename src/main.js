@@ -13,6 +13,12 @@ let dateSortButton = document.querySelector('#dateSortButton');
 sortButton.addEventListener('click', sortByPriority);
 dateSortButton.addEventListener('click', sortByDate);
 
+// all-checkers
+let allChecker = document.querySelector('#checkAll');
+let allUnchecker = document.querySelector('#uncheckAll');
+allChecker.addEventListener('click', checkAllBoxes);
+allUnchecker.addEventListener('click', uncheckAllBoxes);
+
 // when pressing Enter in the input
 function enterItem(event) {
     if(event.keyCode === 13) {
@@ -111,4 +117,22 @@ function sortByDate() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoCreatedAt').getAttribute('compareDate') > b.querySelector('.todoCreatedAt').getAttribute('compareDate') ? 1 : -1);
     itemsArray.forEach(item=>section.appendChild(item));
+}
+
+// when clicking the checkAll button
+function checkAllBoxes() {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(box => {
+        box.checked = true;
+    });
+    document.querySelector('#actionSection #checker').innerText = section.childElementCount;
+}
+
+// when clicking the uncheckAll button
+function uncheckAllBoxes() {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(box => {
+        box.checked = false;
+    });
+    document.querySelector('#actionSection #checker').innerText = 0;
 }
