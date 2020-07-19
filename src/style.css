@@ -1,0 +1,15 @@
+.todoContainer {
+    margin-top: 5px;
+    max-width: 65vw;
+    background-color: lightgrey;
+}
+
+.todoContainer span {
+    margin-right: 0.5em;
+}
+
+.todoContainer button {
+    font-size: 12px;
+    float: right;
+    color: #666;
+}
