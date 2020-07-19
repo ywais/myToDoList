@@ -1,3 +1,4 @@
+// getting document elements
 let section = document.querySelector('#viewSection'),
     input = document.querySelector('#textInput'),
     priority = document.querySelector('#prioritySelector'),
@@ -6,17 +7,20 @@ let section = document.querySelector('#viewSection'),
 addButton.addEventListener('click', addItem);
 input.addEventListener('keyup', enterItem);
 
+// sorters
 let sortButton = document.querySelector('#sortButton');
 let dateSortButton = document.querySelector('#dateSortButton');
 sortButton.addEventListener('click', sortByPriority);
 dateSortButton.addEventListener('click', sortByDate);
 
+// when pressing Enter in the input
 function enterItem(event) {
     if(event.keyCode === 13) {
     addItem();
     }
 }
 
+// when clicking the Add button
 function addItem (event) {
     let newInput = input.value,
         newItem = document.createElement('div'),
@@ -34,7 +38,7 @@ function addItem (event) {
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
     newItem.appendChild(newButton);
-    newTime.setAttribute('compareDate', (new Date()).getTime());
+    newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
     newButton.onclick = () => {
         newItem.remove();
         updateCount();
@@ -48,6 +52,7 @@ function addItem (event) {
     input.focus();
 }
 
+// to display the date in the specified format
 function displayDate() {
     let date = new Date(),
         year = date.getFullYear(),
@@ -68,10 +73,12 @@ function displayDate() {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+// counting ToDos
 function updateCount() {
     document.querySelector('#actionSection span').innerText = section.childElementCount;
 }
 
+// when clicking the sort by priority button
 function sortByPriority() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoPriority').innerText > b.querySelector('.todoPriority').innerText ? -1 : 1);
@@ -79,6 +86,7 @@ function sortByPriority() {
     itemsArray.forEach(item=>section.appendChild(item));
 }
 
+// when clicking the sort by date button
 function sortByDate() {
     let itemsArray = [...section.children];
     itemsArray.sort((a,b) => a.querySelector('.todoCreatedAt').getAttribute('compareDate') > b.querySelector('.todoCreatedAt').getAttribute('compareDate') ? 1 : -1);
