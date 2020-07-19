@@ -54,14 +54,6 @@ function addItem (event) {
     newItem.appendChild(newText),
     newItem.appendChild(newButton);
     newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
-    newButton.onclick = () => {
-        newItem.remove();
-        updateCounter();
-        updateChecker();
-    }
-    newCheck.onclick = () => {
-        updateChecker();
-    }
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
@@ -70,6 +62,23 @@ function addItem (event) {
     updateCounter();
     input.focus();
 }
+
+// when clicking any delete button on the view section
+section.addEventListener('click', (event) => {
+    if(event.target.className === 'todoDelete') {
+        event.target.parentElement.remove();
+        updateCounter();
+        updateChecker();
+    }
+});
+
+// when clicking any checkbox on the view section
+section.addEventListener('click', (event) => {
+    if(event.target.getAttribute('type') === 'checkbox') {
+        updateCounter();
+        updateChecker();
+    }
+});
 
 // to display the date in the specified format
 function displayDate() {
