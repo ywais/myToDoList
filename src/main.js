@@ -19,6 +19,10 @@ let allUnchecker = document.querySelector('#uncheckAll');
 allChecker.addEventListener('click', checkAllBoxes);
 allUnchecker.addEventListener('click', uncheckAllBoxes);
 
+// delete checked
+let deleteChecked = document.querySelector('#deleteChecked');
+deleteChecked.addEventListener('click', deleteAllChecked);
+
 // when pressing Enter in the input
 function enterItem(event) {
     if(event.keyCode === 13) {
@@ -135,4 +139,16 @@ function uncheckAllBoxes() {
         box.checked = false;
     });
     document.querySelector('#actionSection #checker').innerText = 0;
+}
+
+// when clicking the deleteChecked button
+function deleteAllChecked() {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(box => {
+        if(box.checked) {
+            box.parentElement.remove();
+        }
+    });
+    updateCounter();
+    updateChecker();
 }
