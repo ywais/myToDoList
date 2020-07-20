@@ -64,6 +64,7 @@ function addItem () {
     newAddButton.innerText = 'Add mini task';
     section.appendChild(newItem);
     updateCounter();
+    setDraggable();
     input.focus();
 }
 
@@ -92,9 +93,10 @@ section.addEventListener('click', (event) => {
         } else if(!event.target.checked) {
             event.target.parentElement.parentElement.querySelector('[type="checkbox"]').checked = false;
         }
-        updateCounter();
+        updateCounter();        // necessary if added through devTools
         updateMiniCounter();
         updateChecker();
+        setDraggable();
     }
 });
 
@@ -125,6 +127,7 @@ function addChildInputs(parent) {
         childPriority = document.createElement('select'),
         childAddButton = parent.querySelector('.todoChild');
     childInput.className = 'textInput';
+    childPriority.setAttribute('name', 'priority');
     for(let i = 1; i <= 5; i++) {
         childPriority.innerHTML += `\n<option value="${i}">${i}</option>`;
     }
@@ -179,6 +182,7 @@ function addToDoChild (parent) {
     childAddButton.className = 'todoChild';
 
     updateMiniCounter();
+    setDraggable();
 }
 
 // counting ToDos
@@ -245,4 +249,100 @@ function deleteAllChecked() {
     });
     updateCounter();
     updateChecker();
+}
+
+// enabling dragging
+
+let draggingItem, placeholder,
+    isDraggingStarted = false;
+
+// The current position of mouse relative to the dragging element
+let x = 0, y = 0;
+
+// Swap two nodes
+const swap = function(nodeA, nodeB) {
+    const parentA = nodeA.parentNode;
+    const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+    nodeB.parentNode.insertBefore(nodeA, nodeB);
+    parentA.insertBefore(nodeB, siblingA);
+};
+
+// Check if `nodeA` is above `nodeB`
+const isAbove = function(nodeA, nodeB) {
+    const rectA = nodeA.getBoundingClientRect();
+    const rectB = nodeB.getBoundingClientRect();
+    return (rectA.top + rectA.height / 2 < rectB.top + rectB.height / 2);
+};
+
+const mouseDownHandler = function(event) {
+    // don't drag inner elements
+    if([...section.querySelectorAll('div')].includes(event.target)) {
+        draggingItem = event.target;
+
+        // Calculate the mouse position
+        const rect = draggingItem.getBoundingClientRect();
+        x = event.pageX - rect.left;
+        y = event.pageY - rect.top;
+
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+    }
+};
+
+const mouseMoveHandler = function(event) {
+    const draggingRect = draggingItem.getBoundingClientRect();
+
+    if (!isDraggingStarted) {
+        isDraggingStarted = true;
+        
+        // Let the placeholder take the height of dragging element so the next element won't move up
+        placeholder = document.createElement('div');
+        placeholder.classList.add('placeholder');
+        draggingItem.parentNode.insertBefore(placeholder, draggingItem.nextSibling);
+        placeholder.style.height = `${draggingRect.height}px`;
+    }
+
+    draggingItem.style.position = 'absolute';
+    draggingItem.style.top = `${event.pageY - y}px`; 
+    draggingItem.style.left = `${event.pageX - x}px`;
+
+    const prevItem = draggingItem.previousElementSibling;
+    const nextItem = placeholder.nextElementSibling;
+    
+    // User moves the dragging element to the top
+    if (prevItem && isAbove(draggingItem, prevItem)) {
+        swap(placeholder, draggingItem);
+        swap(placeholder, prevItem);
+        return;
+    }
+
+    // User moves the dragging element to the bottom
+    if (nextItem && isAbove(nextItem, draggingItem)) {
+        swap(nextItem, placeholder);
+        swap(nextItem, draggingItem);
+    }
+};
+
+const mouseUpHandler = function() {
+    // Remove the placeholder
+    placeholder && placeholder.remove();
+
+    draggingItem.style.removeProperty('top');
+    draggingItem.style.removeProperty('left');
+    draggingItem.style.removeProperty('position');
+
+    x = null;
+    y = null;
+    draggingItem = null;
+    isDraggingStarted = false;
+
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', mouseUpHandler);
+};
+
+// Query all items
+function setDraggable() {
+    section.querySelectorAll('div').forEach(function(item) {
+        item.addEventListener('mousedown', mouseDownHandler);
+    });
 }

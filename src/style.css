@@ -3,6 +3,8 @@
     margin-top: 5px;
     max-width: 65vw;
     background-color: lightgrey;
+    cursor: move;
+    user-select: none;
 }
 
 .todoContainer span {
