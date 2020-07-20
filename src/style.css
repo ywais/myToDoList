@@ -1,8 +1,15 @@
+* {
+    font-family: Montserrat;
+}
+
+h1 {
+    font-family: Permanent Marker;
+}
+
 /* view section */
 .todoContainer {
     margin-top: 5px;
     max-width: 65vw;
-    background-color: #cccccc;
     cursor: move;
     user-select: none;
 }
@@ -19,8 +26,4 @@
 
 .todoContainer .todoContainer {
     margin-left: 15px;
-}
-
-.todoContainer div {
-    background-color: #d9d9d9;
 }

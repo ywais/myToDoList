@@ -65,6 +65,7 @@ function addItem () {
     newText.innerText = newInput,
     newButton.innerText = 'Delete',
     newAddButton.innerText = 'Add mini task';
+    newItem.style.backgroundColor = colorByPriority(newPriority.innerText);
     section.appendChild(newItem);
     updateCounter();
     setDraggable();
@@ -93,8 +94,9 @@ section.addEventListener('click', (event) => {
             event.target.parentElement.querySelectorAll('[type="checkbox"]').forEach(box => {
                 box.checked = event.target.checked;
             });
+            // sortByChecked();
         } else if(!event.target.checked) {
-            event.target.parentElement.parentElement.querySelector('[type="checkbox"]').checked = false;
+            event.target.parentElement.parentElement.parentElement.querySelector('[type="checkbox"]').checked = false;
         }
         updateCounter();        // necessary if added through devTools
         updateMiniCounter();
@@ -130,6 +132,7 @@ function addChildInputs(parent) {
         childPriority = document.createElement('select'),
         childAddButton = parent.querySelector('.todoChild');
     childInput.className = 'textInput';
+    childInput.setAttribute('placeholder', 'Add your mini ToDo...');
     childPriority.setAttribute('name', 'priority');
     for(let i = 1; i <= 5; i++) {
         childPriority.innerHTML += `\n<option value="${i}">${i}</option>`;
@@ -176,6 +179,7 @@ function addToDoChild (parent) {
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
     newButton.innerText = 'Delete';
+    newItem.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
     parent.querySelector('div').appendChild(newItem);
     
     let childAddButton = parent.querySelector('.todoAddChild');
@@ -224,6 +228,13 @@ function sortByDate() {
     itemsArray.forEach(item=>section.appendChild(item));
 }
 
+// // sort the checked items to the end
+// function sortByChecked() {
+//     let itemsArray = [...section.children];
+//     itemsArray.sort((a,b) => a.querySelector('[type="checkbox"]').checked > b.querySelector('[type="checkbox"]').checked ? 1 : -1);
+//     itemsArray.forEach(item=>section.appendChild(item));
+// }
+
 // when clicking the checkAll button
 function checkAllBoxes() {
     let checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -255,7 +266,7 @@ function deleteAllChecked() {
     updateChecker();
 }
 
-// enabling dragging
+// ** enabling dragging **
 
 let draggingItem, placeholder,
     isDraggingStarted = false;
@@ -349,4 +360,29 @@ function setDraggable() {
     section.querySelectorAll('.todoContainer').forEach(function(item) {
         item.addEventListener('mousedown', mouseDownHandler);
     });
+}
+
+// set item background color
+function colorByPriority(priority) {
+    switch (priority) {
+        case '1':
+            return '#21C0E8';
+            break;
+    
+        case '2':
+            return '#8cff66';
+            break;
+    
+        case '3':
+            return 'yellow';
+            break;
+    
+        case '4':
+            return 'orange';
+            break;
+    
+        default:
+            return 'red';           
+            break;
+    }
 }
