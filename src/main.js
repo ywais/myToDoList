@@ -84,6 +84,13 @@ section.addEventListener('click', (event) => {
 // when clicking any checkbox on the view section
 section.addEventListener('click', (event) => {
     if(event.target.getAttribute('type') === 'checkbox') {
+        if(event.target.parentElement.parentElement === section) {
+            event.target.parentElement.querySelectorAll('[type="checkbox"]').forEach(box => {
+                box.checked = event.target.checked;
+            });
+        } else if(!event.target.checked) {
+            event.target.parentElement.parentElement.querySelector('[type="checkbox"]').checked = false;
+        }
         updateCounter();
         updateMiniCounter();
         updateChecker();
