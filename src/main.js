@@ -39,7 +39,8 @@ function addItem () {
         newText = document.createElement('span'),
         newAddButton = document.createElement('button'),
         newButton = document.createElement('button'),
-        newCheck = document.createElement('input');
+        newCheck = document.createElement('input'),
+        newChildrenDiv = document.createElement('div');
     newCheck.setAttribute('type', 'checkbox'),
     newCheck.setAttribute('name', 'toDoItems'),
     newCheck.setAttribute('value', newInput);
@@ -49,13 +50,15 @@ function addItem () {
     newTime.className = 'todoCreatedAt',
     newText.className = 'todoText',
     newAddButton.className = 'todoChild',
-    newButton.className = 'todoDelete';
+    newButton.className = 'todoDelete',
+    newChildrenDiv.className = 'todoChildrenDiv';
     newItem.appendChild(newCheck),
     newItem.appendChild(newPriority),
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
     newItem.appendChild(newButton),
-    newItem.appendChild(newAddButton);
+    newItem.appendChild(newAddButton),
+    newItem.appendChild(newChildrenDiv);
     newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
@@ -173,7 +176,7 @@ function addToDoChild (parent) {
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
     newButton.innerText = 'Delete';
-    parent.appendChild(newItem);
+    parent.querySelector('div').appendChild(newItem);
     
     let childAddButton = parent.querySelector('.todoAddChild');
     parent.querySelector('input.textInput').remove();
@@ -248,6 +251,7 @@ function deleteAllChecked() {
         }
     });
     updateCounter();
+    updateMiniCounter();
     updateChecker();
 }
 
@@ -276,7 +280,7 @@ const isAbove = function(nodeA, nodeB) {
 
 const mouseDownHandler = function(event) {
     // don't drag inner elements
-    if([...section.querySelectorAll('div')].includes(event.target)) {
+    if([...section.querySelectorAll('.todoContainer')].includes(event.target)) {
         draggingItem = event.target;
 
         // Calculate the mouse position
@@ -342,7 +346,7 @@ const mouseUpHandler = function() {
 
 // Query all items
 function setDraggable() {
-    section.querySelectorAll('div').forEach(function(item) {
+    section.querySelectorAll('.todoContainer').forEach(function(item) {
         item.addEventListener('mousedown', mouseDownHandler);
     });
 }
