@@ -1,29 +1,82 @@
 * {
+    margin: 0;
+    padding: 0;
     font-family: Montserrat;
+}
+
+/* control section */
+#controlSection {
+    width: 100vw;
+    position: fixed;
+    top: 0rem;
+    padding-top: 3rem;
+    padding-left: 1rem;
+    background-color: pink;
+    z-index: 1;
 }
 
 h1 {
     font-family: Permanent Marker;
+    font-size: 3rem;
+    padding-left: 1.5rem;
+    padding-bottom: 0.5rem;
 }
 
 /* view section */
+section {
+    font-size: 1rem;
+    position: absolute;
+    padding-top: 10rem;
+    padding-left: 1rem;
+}
+
 .todoContainer {
-    margin-top: 5px;
-    max-width: 65vw;
+    margin-top: 0.3rem;
+    padding: 0.2rem;
+    width: 65vw;
     cursor: move;
     user-select: none;
 }
 
 .todoContainer span {
-    margin-right: 5px;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .todoContainer button {
-    font-size: 12px;
+    font-size: 0.8rem;
     float: right;
-    margin-left: 5px;
+    margin-left: 1rem;
 }
 
 .todoContainer .todoContainer {
-    margin-left: 15px;
+    width: 63.5vw;
+    margin-left: 1vw;
+}
+
+/* action section */
+#actionSection {
+    position: fixed;
+    right: 10vw;
+    text-align: center;
+}
+
+#actionSection p {
+    width: 16rem;
+    margin-bottom: 0.5rem;
+}
+
+#actionSection button {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 10%;
+    border-width: 1px;
+}
+
+#actionSection #deleteChecked {
+    width: 10rem;
+    height: 3.5rem;
+    border-radius: 5%;
 }
