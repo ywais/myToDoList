@@ -60,8 +60,8 @@ function addItem () {
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
-    newButton.innerText = '[ X ]',
-    newAddButton.innerText = '[ + ]';
+    newButton.innerText = 'Delete',
+    newAddButton.innerText = 'Add mini task';
     section.appendChild(newItem);
     updateCounter();
     input.focus();
@@ -76,6 +76,7 @@ section.addEventListener('click', (event) => {
         updateChecker();
     } else if(event.target.className === 'todoChild') {
         addChildInputs(event.target.parentElement);
+        event.target.parentElement.querySelector('.textInput').addEventListener('keyup', enterChildItem);
     } else if(event.target.className === 'todoAddChild') {
         addToDoChild(event.target.parentElement);
     }
@@ -134,6 +135,13 @@ function addChildInputs(parent) {
     childInput.focus();
 }
 
+// when pressing Enter in the child input
+function enterChildItem(event) {
+    if(event.keyCode === 13) {
+        addToDoChild(event.target.parentElement);
+    }
+}
+
 // add child todo
 function addToDoChild (parent) {
     let newInput = parent.querySelector('input.textInput').value,
@@ -161,13 +169,13 @@ function addToDoChild (parent) {
     newPriority.innerText = parent.querySelectorAll('select option')[parent.querySelector('select').selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
-    newButton.innerText = '[ X ]';
+    newButton.innerText = 'Delete';
     parent.appendChild(newItem);
     
     let childAddButton = parent.querySelector('.todoAddChild');
     parent.querySelector('input.textInput').remove();
     parent.querySelector('select').remove();
-    childAddButton.innerText = '[ + ]';
+    childAddButton.innerText = 'Add mini task';
     childAddButton.className = 'todoChild';
 
     updateMiniCounter();

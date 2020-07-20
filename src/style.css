@@ -12,6 +12,7 @@
 .todoContainer button {
     font-size: 12px;
     float: right;
+    margin-left: 5px;
 }
 
 .todoContainer .todoContainer {
