@@ -16,17 +16,19 @@
 }
 
 #controlSection h1 {
-    font-family: Permanent Marker;
-    font-size: 3rem;
+    font-family: Chewy;
+    font-size: 4rem;
     padding-left: 1.5rem;
     padding-bottom: 0.5rem;
+    color: #15599d;
+    text-shadow: 1.5px 1.5px white;
 }
 
 /* view section */
 section {
     font-size: 1rem;
     position: absolute;
-    padding-top: 9rem;
+    padding-top: 10rem;
     padding-left: 1rem;
     padding-bottom: 0.5rem;
 }
@@ -34,7 +36,7 @@ section {
 .todoContainer {
     margin-top: 0.3rem;
     padding: 0.2rem;
-    width: 65vw;
+    width: 75vw;
     cursor: move;
     user-select: none;
 }
@@ -51,7 +53,7 @@ section {
 }
 
 .todoContainer .todoContainer {
-    width: 63.5vw;
+    width: 73.5vw;
     margin-left: 1vw;
 }
 
@@ -76,7 +78,12 @@ section {
     width: 4.5rem;
     height: 4.5rem;
     border-radius: 10%;
-    border-width: 1px;
+    border-width: 0px;
+    box-shadow: 3px 3px 5px black;
+    background-color: #15599d;
+    color: white;
+    font-weight: bold;
+    z-index: 1;
 }
 
 #actionSection #deleteChecked {
@@ -88,4 +95,6 @@ section {
 #actionSection img {
     width: 16rem;
     height: auto;
+    padding-top: 5px;
+    z-index: 0;
 }
