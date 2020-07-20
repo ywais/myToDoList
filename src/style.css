@@ -13,3 +13,7 @@
     font-size: 12px;
     float: right;
 }
+
+.todoContainer .todoContainer {
+    margin-left: 15px;
+}

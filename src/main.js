@@ -31,44 +31,53 @@ function enterItem(event) {
 }
 
 // when clicking the Add button
-function addItem (event) {
+function addItem () {
     let newInput = input.value,
         newItem = document.createElement('div'),
         newPriority = document.createElement('span'),
         newTime = document.createElement('span'),
         newText = document.createElement('span'),
+        newAddButton = document.createElement('button'),
         newButton = document.createElement('button'),
         newCheck = document.createElement('input');
-    newCheck.setAttribute('type', 'checkbox');
-    newCheck.setAttribute('name', 'toDoItems');
+    newCheck.setAttribute('type', 'checkbox'),
+    newCheck.setAttribute('name', 'toDoItems'),
     newCheck.setAttribute('value', newInput);
     input.value = '';
     newItem.className = 'todoContainer',
     newPriority.className = 'todoPriority',
     newTime.className = 'todoCreatedAt',
     newText.className = 'todoText',
+    newAddButton.className = 'todoChild',
     newButton.className = 'todoDelete';
     newItem.appendChild(newCheck),
     newItem.appendChild(newPriority),
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
-    newItem.appendChild(newButton);
+    newItem.appendChild(newButton),
+    newItem.appendChild(newAddButton);
     newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
     newPriority.innerText = options[priority.selectedIndex].value,
     newTime.innerText = displayDate(),
     newText.innerText = newInput,
-    newButton.innerText = '[ X ]';
+    newButton.innerText = '[ X ]',
+    newAddButton.innerText = '[ + ]';
     section.appendChild(newItem);
     updateCounter();
     input.focus();
 }
 
-// when clicking any delete button on the view section
+// when clicking a button on the view section
 section.addEventListener('click', (event) => {
     if(event.target.className === 'todoDelete') {
         event.target.parentElement.remove();
         updateCounter();
+        updateMiniCounter();
         updateChecker();
+    } else if(event.target.className === 'todoChild') {
+        addChildInputs(event.target.parentElement);
+    } else if(event.target.className === 'todoAddChild') {
+        addToDoChild(event.target.parentElement);
     }
 });
 
@@ -76,6 +85,7 @@ section.addEventListener('click', (event) => {
 section.addEventListener('click', (event) => {
     if(event.target.getAttribute('type') === 'checkbox') {
         updateCounter();
+        updateMiniCounter();
         updateChecker();
     }
 });
@@ -101,9 +111,69 @@ function displayDate() {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+// add inputs for child todo
+function addChildInputs(parent) {
+    let childInput = document.createElement('input'),
+        childPriority = document.createElement('select'),
+        childAddButton = parent.querySelector('.todoChild');
+    childInput.className = 'textInput';
+    for(let i = 1; i <= 5; i++) {
+        childPriority.innerHTML += `\n<option value="${i}">${i}</option>`;
+    }
+    childAddButton.innerText = 'Add';
+    childAddButton.className = 'todoAddChild';
+    parent.appendChild(childInput),
+    parent.appendChild(childPriority);
+    childInput.focus();
+}
+
+// add child todo
+function addToDoChild (parent) {
+    let newInput = parent.querySelector('input.textInput').value,
+        newItem = document.createElement('div'),
+        newPriority = document.createElement('span'),
+        newTime = document.createElement('span'),
+        newText = document.createElement('span'),
+        newButton = document.createElement('button'),
+        newCheck = document.createElement('input');
+    newCheck.setAttribute('type', 'checkbox'),
+    newCheck.setAttribute('name', 'toDoItems'),
+    newCheck.setAttribute('value', newInput);
+    input.value = '';
+    newItem.className = 'todoContainer',
+    newPriority.className = 'todoPriority',
+    newTime.className = 'todoCreatedAt',
+    newText.className = 'todoText',
+    newButton.className = 'todoDelete';
+    newItem.appendChild(newCheck),
+    newItem.appendChild(newPriority),
+    newItem.appendChild(newTime),
+    newItem.appendChild(newText),
+    newItem.appendChild(newButton);
+    newTime.setAttribute('compareDate', (new Date()).getTime()); // for the sorter
+    newPriority.innerText = parent.querySelectorAll('select option')[parent.querySelector('select').selectedIndex].value,
+    newTime.innerText = displayDate(),
+    newText.innerText = newInput,
+    newButton.innerText = '[ X ]';
+    parent.appendChild(newItem);
+    
+    let childAddButton = parent.querySelector('.todoAddChild');
+    parent.querySelector('input.textInput').remove();
+    parent.querySelector('select').remove();
+    childAddButton.innerText = '[ + ]';
+    childAddButton.className = 'todoChild';
+
+    updateMiniCounter();
+}
+
 // counting ToDos
 function updateCounter() {
     document.querySelector('#actionSection #counter').innerText = section.childElementCount;
+}
+
+// counting ToDo children
+function updateMiniCounter() {
+    document.querySelector('#actionSection #childCounter').innerText = document.querySelectorAll('.todoContainer .todoContainer').length;
 }
 
 // counting checked ToDos
