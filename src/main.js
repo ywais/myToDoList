@@ -366,23 +366,23 @@ function setDraggable() {
 function colorByPriority(priority) {
     switch (priority) {
         case '1':
-            return '#21C0E8';
+            return '#ffff4d';
             break;
     
         case '2':
-            return '#8cff66';
+            return '#ffd24d';
             break;
     
         case '3':
-            return 'yellow';
+            return '#ffa64d';
             break;
     
         case '4':
-            return 'orange';
+            return '#ff794d';
             break;
     
         default:
-            return 'red';           
+            return '#ff4d4d';           
             break;
     }
 }

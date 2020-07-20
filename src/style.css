@@ -9,13 +9,13 @@
     width: 100vw;
     position: fixed;
     top: 0rem;
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-left: 1rem;
-    background-color: pink;
+    background-color: #18b0bd;
     z-index: 1;
 }
 
-h1 {
+#controlSection h1 {
     font-family: Permanent Marker;
     font-size: 3rem;
     padding-left: 1.5rem;
@@ -26,8 +26,9 @@ h1 {
 section {
     font-size: 1rem;
     position: absolute;
-    padding-top: 10rem;
+    padding-top: 9rem;
     padding-left: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .todoContainer {
@@ -57,12 +58,15 @@ section {
 /* action section */
 #actionSection {
     position: fixed;
-    right: 10vw;
+    height: 100vh;
+    right: 0vw;
+    /* padding-right: 8vw; */
     text-align: center;
+    background-color: #18b0bd;
 }
 
 #actionSection p {
-    width: 16rem;
+    width: 15rem;
     margin-bottom: 0.5rem;
 }
 
@@ -79,4 +83,9 @@ section {
     width: 10rem;
     height: 3.5rem;
     border-radius: 5%;
+}
+
+#actionSection img {
+    width: 16rem;
+    height: auto;
 }
