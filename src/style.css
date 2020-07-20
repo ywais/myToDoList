@@ -2,13 +2,13 @@
 .todoContainer {
     margin-top: 5px;
     max-width: 65vw;
-    background-color: lightgrey;
+    background-color: #cccccc;
     cursor: move;
     user-select: none;
 }
 
 .todoContainer span {
-    margin-right: 0.5em;
+    margin-right: 5px;
 }
 
 .todoContainer button {
@@ -19,4 +19,8 @@
 
 .todoContainer .todoContainer {
     margin-left: 15px;
+}
+
+.todoContainer div {
+    background-color: #d9d9d9;
 }
