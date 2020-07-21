@@ -39,6 +39,7 @@ function addItem () {
         newText = document.createElement('span'),
         newAddButton = document.createElement('button'),
         newButton = document.createElement('button'),
+        newCheckSpan = document.createElement('span'),
         newCheck = document.createElement('input'),
         newChildrenDiv = document.createElement('div');
     newCheck.setAttribute('type', 'checkbox'),
@@ -52,7 +53,8 @@ function addItem () {
     newAddButton.className = 'todoChild',
     newButton.className = 'todoDelete',
     newChildrenDiv.className = 'todoChildrenDiv';
-    newItem.appendChild(newCheck),
+    newCheckSpan.appendChild(newCheck),
+    newItem.appendChild(newCheckSpan),
     newItem.appendChild(newPriority),
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
@@ -159,6 +161,7 @@ function addToDoChild (parent) {
         newTime = document.createElement('span'),
         newText = document.createElement('span'),
         newButton = document.createElement('button'),
+        newCheckSpan = document.createElement('span'),
         newCheck = document.createElement('input');
     newCheck.setAttribute('type', 'checkbox'),
     newCheck.setAttribute('name', 'toDoItems'),
@@ -169,7 +172,8 @@ function addToDoChild (parent) {
     newTime.className = 'todoCreatedAt',
     newText.className = 'todoText',
     newButton.className = 'todoDelete';
-    newItem.appendChild(newCheck),
+    newCheckSpan.appendChild(newCheck),
+    newItem.appendChild(newCheckSpan),
     newItem.appendChild(newPriority),
     newItem.appendChild(newTime),
     newItem.appendChild(newText),
