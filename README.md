@@ -11,6 +11,7 @@
    * favicon
 - drag and drop element in a list
 - Add a way to search tasks
+- Deploy your app to the internet
  
  
  auto gif:
@@ -24,6 +25,8 @@
  my video:
  https://drive.google.com/file/d/1EEHo_BApHWFgNzUPBrd_x0Zj7wuaM1mx/view?usp=sharing
  
+ my Vercel:
+ https://my-to-do-list-one.vercel.app/
  
  
  
