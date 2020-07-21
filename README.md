@@ -2,13 +2,13 @@
  ## bonus
  - Add new features:
    * add mini ToDos to every task
- * tick (V) tasks and mini tasks
- * (V) relations
- * sord by date added
- * coloring by priority
- * overflow long tasks
- * different screen sizes adjustments
- * favicon
+   * tick (V) tasks and mini tasks
+   * (V) relations
+   * sord by date added
+   * coloring by priority
+   * overflow long tasks
+   * different screen sizes adjustments
+   * favicon
 - drag and drop element in a list
 - Add a way to search tasks
  
