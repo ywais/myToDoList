@@ -3,19 +3,9 @@ let section = document.querySelector('#viewSection'),
     input = document.querySelector('#textInput'),
     priority = document.querySelector('#prioritySelector'),
     options = document.querySelectorAll('#prioritySelector option'),
-    addButton = document.querySelector('#addButton'),
-    searchInput = document.querySelector('#searchInput'),
-    searchButton = document.querySelector('#searchButton'),
-    clearButton = document.querySelector('#clearButton');
-
-// add item
+    addButton = document.querySelector('#addButton');
 addButton.addEventListener('click', addItem);
 input.addEventListener('keyup', enterItem);
-
-// search item
-searchButton.addEventListener('click', searchItem);
-searchInput.addEventListener('keyup', enterSearchItem);
-clearButton.addEventListener('click', clearSearch);
 
 // sorters
 let sortButton = document.querySelector('#sortButton');
@@ -36,14 +26,7 @@ deleteChecked.addEventListener('click', deleteAllChecked);
 // when pressing Enter in the input
 function enterItem(event) {
     if(event.keyCode === 13) {
-        addItem();
-    }
-}
-
-// when pressing Enter in the searchInput
-function enterSearchItem(event) {
-    if(event.keyCode === 13) {
-        searchItem();
+    addItem();
     }
 }
 
@@ -87,33 +70,6 @@ function addItem () {
     updateCounter();
     setDraggable();
     input.focus();
-}
-
-// when clicking the Search button
-function searchItem() {
-    clearSearch();
-    let newSearch = searchInput.value,
-        itemsArray = [...section.querySelectorAll('.todoText')];
-    if(newSearch) {
-        for(let i = 0; i < itemsArray.length; i++) {
-            if(itemsArray[i].innerText.includes(newSearch)) {
-                itemsArray[i].style.fontWeight = 900;
-                itemsArray[i].style.fontStyle = 'oblique';
-                itemsArray[i].style.textShadow = '1.5px 1.5px 2px white';
-            }
-        }
-    }
-    searchInput.value = '';
-}
-
-// clear search result
-function clearSearch() {
-    let itemsArray = [...section.querySelectorAll('.todoText')];
-    itemsArray.forEach(item => {
-        item.style.fontWeight = 400;
-        item.style.fontStyle = 'normal';
-        item.style.textShadow = 'none'; // :P
-    })
 }
 
 // when clicking a button on the view section
