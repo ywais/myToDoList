@@ -44,6 +44,13 @@ section {
 .todoContainer span {
     margin-right: 1rem;
     margin-left: 1rem;
+    display: inline-block;
+    height: 1.2rem;
+    overflow: auto;
+}
+
+.todoContainer .todoText {
+    max-width: 33rem;
 }
 
 .todoContainer button {
@@ -79,7 +86,7 @@ section {
     height: 4.5rem;
     border-radius: 10%;
     border-width: 0px;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 2px 2px 4px black;
     background-color: #15599d;
     color: white;
     font-weight: bold;
