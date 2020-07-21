@@ -46,7 +46,8 @@ section {
     margin-left: 1rem;
     display: inline-block;
     height: 1.2rem;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .todoContainer .todoText {
