@@ -71,7 +71,7 @@ section {
     }
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1330px) {
     .todoContainer .todoText {
         max-width: 25rem;
     }
@@ -84,6 +84,10 @@ section {
 
     .todoContainer .todoText {
         max-width: 15rem;
+    }
+
+    .todoContainer .todoContainer {
+        width: 63.5vw;
     }
 }
 
