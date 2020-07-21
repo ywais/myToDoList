@@ -51,7 +51,7 @@ section {
 }
 
 .todoContainer .todoText {
-    max-width: 33rem;
+    max-width: 50rem;
 }
 
 .todoContainer button {
@@ -63,6 +63,28 @@ section {
 .todoContainer .todoContainer {
     width: 73.5vw;
     margin-left: 1vw;
+}
+
+@media (max-width: 1450px) {
+    .todoContainer .todoText {
+        max-width: 35rem;
+    }
+}
+
+@media (max-width: 1320px) {
+    .todoContainer .todoText {
+        max-width: 25rem;
+    }
+}
+
+@media (max-width: 1185px) {
+    .todoContainer {
+        width: 65vw;
+    }
+
+    .todoContainer .todoText {
+        max-width: 15rem;
+    }
 }
 
 /* action section */
