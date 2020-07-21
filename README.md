@@ -1,7 +1,7 @@
 
  ## bonus
  - Add new features:
- * add mini ToDos to every task
+   * add mini ToDos to every task
  * tick (V) tasks and mini tasks
  * (V) relations
  * sord by date added
