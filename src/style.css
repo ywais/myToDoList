@@ -24,6 +24,23 @@
     text-shadow: 1.5px 1.5px white;
 }
 
+#controlSection .search {
+    position: fixed;
+    right: 0vw;
+}
+
+#controlSection #searchButton {
+    margin-right: 17rem;
+}
+
+#controlSection #searchInput {
+    margin-right: 20.5rem;
+}    
+
+#controlSection #clearButton {
+    margin-right: 10.5rem;
+}    
+
 /* view section */
 section {
     font-size: 1rem;
