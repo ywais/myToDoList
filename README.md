@@ -1,11 +1,14 @@
 
  ## bonus
  - Add new features:
+   * delete tasks
    * add mini ToDos to every task
-   * tick (V) tasks and mini tasks
-   * (V) relations
-   * sord by date added
    * coloring by priority
+   * tick (V) tasks and mini tasks
+   * (V) relations, un/tick all
+   * delete all ticked
+   * counters
+   * sort by date added
    * overflow long tasks
    * different screen sizes adjustments
    * favicon
