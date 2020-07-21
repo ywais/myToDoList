@@ -25,20 +25,19 @@
 }
 
 #controlSection .search {
-    position: fixed;
-    right: 0vw;
+    position: relative;
 }
 
 #controlSection #searchButton {
-    margin-right: 17rem;
+    margin-left: 0.5rem;
 }
 
 #controlSection #searchInput {
-    margin-right: 20.5rem;
+    margin-left: 15rem;
 }    
 
 #controlSection #clearButton {
-    margin-right: 10.5rem;
+    margin-left: 0.5rem;
 }    
 
 /* view section */
