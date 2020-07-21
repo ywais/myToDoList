@@ -111,6 +111,8 @@ $ npm run test
  - Record a 5 min selfie video, describe yourself in a few words, talk about the project you submit - try to explain how your app works. Think about this video as an interview
  - Upload the 5 min video to the cloud (google drive) and add here (README.md) the public link for the video (can be located under the gif)
  
+ ![](./readme-files/ui-testing-recording.gif)
+ ![](./readme-files/my_gif.gif)
  https://drive.google.com/file/d/1EEHo_BApHWFgNzUPBrd_x0Zj7wuaM1mx/view?usp=sharing
  
  - [Create a Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) from the new brunch you created in the Instructions into master in your duplicated repository
