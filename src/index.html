@@ -3,11 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My To Do List</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/Z3ZbPvw.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- my CSS -->
 </head>
 <body>
     
-    <script src="./main.js"></script>
+    <!-- control section -->
+    <section id="controlSection">
+        <h1>To Do List</h1>
+        <input id="textInput" placeholder="Add your ToDo...">
+        <label for="prioritySelector">Choose a priority:</label>
+        <select name="priority" id="prioritySelector">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button id="addButton">Add</button>
+        <input class="search" id="searchInput" placeholder="Search your ToDo...">
+        <button class="search" id="searchButton">Search</button>
+        <button class="search" id="clearButton">Clear marking</button>
+    </section>
+    
+    <!-- view section -->
+    <section id="viewSection">
+
+    </section>
+    
+    <!-- action section -->
+    <section id="actionSection">
+        <p id="totalToDos">Main ToDos: <span id="counter">0</span></p>
+        <p id="childToDos">Mini ToDos: <span id="childCounter">0</span></p>
+        <p id="checkedToDos">Checked ToDos: <span id="checker">0</span></p>
+        <button id="sortButton">sort by priority</button>
+        <button id="dateSortButton">sort by date</button>
+        <br><br>
+        <button id="checkAll">check all list</button>
+        <button id="uncheckAll">uncheck all list</button>
+        <br><br>
+        <button id="deleteChecked">delete all<br>checked items</button>
+        <br>
+        <img src="https://i.imgur.com/Z3ZbPvw.jpg" alt="Remember Knot" width="500" height="500">
+    </section>
+
+    <script src="./main.js"></script> <!-- my JavaScript -->
 </body>
 </html>
